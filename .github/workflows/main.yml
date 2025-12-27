@@ -1,0 +1,26 @@
+name: CI Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print message
+        run: echo "CI Running"
+
+      - name: Create output file
+        run: echo "Build successful" > output.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: output.txt
+
